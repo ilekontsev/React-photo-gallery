@@ -1,0 +1,56 @@
+
+
+.photoGalleryWrapper
+  margin: 30px
+  width: 370px
+  min-height: 400px
+  padding: 20px
+  box-shadow:  0 0 5px black
+  border-radius: 5px
+
+  .photoGalleryTitle
+    min-height: 20px
+    color: #A0A0A0
+  .photoGallerySubTitle
+    min-height: 20px
+    margin-top: 10px
+    color: #D4D4D4
+
+  .photoGalleryImagesContainer
+    margin-top: 10px
+    min-height: 330px
+    max-height: 360px
+    width: 100%
+    .photoGalleryImage
+      border-radius: 5px
+      width: 100px
+      height: 100px
+      margin: 5px
+      object-fit: cover
+      &:hover
+        filter: brightness(50%)
+  .photoGalleryButtonContainer
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+
+
+
+
+.photoGalleryModalContainer
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100vh
+  background: rgba(0, 0, 0, 0.71)
+  .photoGalleryModal
+    position: absolute
+    background-size: contain
+    z-index: 999
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+
+
