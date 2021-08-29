@@ -27,8 +27,8 @@ const PhotoGallery = observer(() => {
     const homePage = () => {
         Story.changeCount('home')
     }
-    const fowardPage = () => {
-        Story.changeCount('foward')
+    const forwardPage = () => {
+        Story.changeCount('forward')
     }
 
     return(
@@ -47,9 +47,9 @@ const PhotoGallery = observer(() => {
 
 
             <div className={style.photoGalleryButtonContainer}>
-                <Button title="<-" disabled={Story.disabledBack} action={backPage} view="light"/>
-                <Button title="H" action={homePage} view="light"/>
-                <Button title="->" disabled={Story.disabledFoward} action={fowardPage} view="light"/>
+                <Button svg={'back'} disabled={Story.disabledBack} action={backPage} view="light"/>
+                <Button svg={'home'} action={homePage} view="light"/>
+                <Button svg={'forward'} disabled={Story.disabledForward} action={forwardPage} view="light"/>
             </div>
         </div>
     )

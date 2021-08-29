@@ -7,7 +7,7 @@ class Story {
   description: string = '';
   count: number = 0;
   disabledBack: boolean = true;
-  disabledFoward: boolean = true;
+  disabledForward: boolean = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -25,7 +25,7 @@ class Story {
     }
     console.log(res.data)
     this.disabledBack = res.data.pageBack
-    this.disabledFoward = res.data.pageFoward
+    this.disabledForward = res.data.pageFoward
   }
 
   setTextOnServ = async (value: string, text:string) => {
@@ -52,6 +52,13 @@ class Story {
     this.images = []
   }
 
+  sendFormDataOnServer = async (formData:any) => {
+    await axios.post("http://localhost:5000/save", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }})
+  }
+
   changeCount (text: string){
     switch (text){
       case 'back':{
@@ -59,7 +66,7 @@ class Story {
         this.getData()
         break
       }
-      case 'foward':{
+      case 'forward':{
         this.count +=8
         this.getData()
         break

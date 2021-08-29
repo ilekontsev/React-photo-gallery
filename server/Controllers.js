@@ -1,26 +1,27 @@
 const fs = require('fs');
 const path = require('path')
 const multiparty = require('multiparty')
-const form = new multiparty.Form();
+
+
 
 const saveImage = (req,res) => {
     try{
+        const form = new multiparty.Form();
         const oldFile = fs.readFileSync("dataBase.json");
         const oldFileParse = JSON.parse(oldFile);
         const array = oldFileParse.images;
-
         form.parse(req, function(err, fields, files) {
             if(err){
                 return res.status(500).send("files image not work")
             }
-
             const imgArray = files.image;
+            console.log(imgArray)
             const singleImg = imgArray[0];
+
             const newPath = path.join(__dirname + `/uploads`, `/${array.length + 1}.jpg`);
             const path_DB = (`http://localhost:5000/static/${array.length + 1}.jpg`)
             array.push(path_DB)
             readAndWriteFile(singleImg, newPath)
-
             oldFileParse.images = array;
             fs.writeFileSync("dataBase.json", JSON.stringify(oldFileParse,null,2));
 
@@ -32,9 +33,9 @@ const saveImage = (req,res) => {
 
 }
 
-function readAndWriteFile(singleImg, newPath) {
-    fs.readFile(singleImg.path , function(err,data) {
-        fs.writeFile(newPath, data, function(err) {
+const readAndWriteFile  = (singleImg, newPath) => {
+    fs.readFile(singleImg.path ,  (err,data) => {
+         fs.writeFile(newPath, data, function(err) {
             if (err) console.log('ERRRRRR!! :'+err);
             console.log('Fitxer: '+singleImg.originalFilename +' - '+ newPath);
         })

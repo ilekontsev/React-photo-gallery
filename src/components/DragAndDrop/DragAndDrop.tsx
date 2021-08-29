@@ -4,7 +4,6 @@ import Story from "../../stories/Story";
 import { observer } from "mobx-react";
 
 import style from "../../../styles/Settings.module.sass";
-import axios from "axios";
 
 export interface PropsDragAndDrop{
     title: string
@@ -31,14 +30,13 @@ const DragAndDrop = observer((props: PropsDragAndDrop) => {
         e.preventDefault();
     }
 
+
+
     const uploadFile = async (file: any) => {
+        let formData = new FormData()
         if(validateFile(file)){
-            let formData = new FormData()
             formData.append('image', file)
-            await axios.post("http://localhost:5000/save", formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }})
+            Story.sendFormDataOnServer(formData)
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import Story from "../../stories/Story";
 import { observer } from "mobx-react";
